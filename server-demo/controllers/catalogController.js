@@ -1,7 +1,9 @@
 const layout = require('../views/layout.js');
+const database = require('../util/database.js');
 
-const html = `
+const html = (items) => `
 <div>
+
     <h1>Catalog</h1>
     <form method="POST" action="/create">
         <label>Name <input type="text" name="name"></label>
@@ -9,13 +11,12 @@ const html = `
         <input type="submit" value="Create Item">
     </form>
     <ul>
-        <li>First Item</li>
-        <li>Second Item</li>
-        <li>Third Item</li>
+        ${items.map(i => `<li>${i.name} - ${i.serial}</li>`)}
     </ul>
-</div>`
+
+</div>`;
 
 module.exports = (req, res) => {
-    res.write(layout(html));
+    res.write(layout(html(database)));
     res.end();
 };
