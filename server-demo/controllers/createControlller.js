@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     form.parse(req, (err, fields, files) => {
         console.log('created item');
 
-        database.push(fields);
+        database.addItem(fields);
 
         res.writeHead(301, {
             'Location': '/catalog'
