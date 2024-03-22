@@ -1,21 +1,26 @@
-const formidable = require('formidable');
-
+// const formidable = require('formidable');
+const parseForm = require('../util/formParser.js');
 const database = require('../util/database.js');
 
 
-module.exports = (req, res) => {
-    const form = new formidable.IncomingForm();
+module.exports = async (req, res) => {
+    // const form = new formidable.IncomingForm();
 
-    form.parse(req, (err, fields, files) => {
-        console.log('created item');
+    // form.parse(req, (err, fields, files) => {
 
-        database.addItem(fields);
+    //     database.addItem(fields);
 
-        res.writeHead(301, {
-            'Location': '/catalog'
-        });
-        res.end();
+    // });
+
+
+    const body = await parseForm(req);
+
+    console.log('created item');
+
+    database.addItem(body);
+
+    res.writeHead(301, {
+        'Location': '/catalog'
     });
-
-
+    res.end();
 };

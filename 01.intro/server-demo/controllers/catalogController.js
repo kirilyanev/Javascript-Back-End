@@ -1,5 +1,5 @@
-const layout = require('../views/layout.js');
 const database = require('../util/database.js');
+const { layout } = require('../util/template.js');
 
 const html = (items) => `
 <div>
@@ -16,7 +16,7 @@ const html = (items) => `
 
 </div>`;
 
-module.exports = (req, res) => {
-    res.write(layout(html(Object.entries(database.database))));
+module.exports = async (req, res) => {
+    res.write(await layout(html(Object.entries(database.database))));
     res.end();
 };

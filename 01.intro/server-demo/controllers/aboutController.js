@@ -1,4 +1,5 @@
-const layout = require('../views/layout.js');
+const { layout } = require("../util/template.js");
+
 
 const html = `
     <div>
@@ -6,7 +7,7 @@ const html = `
         <p>About page</p>
     </div>`;
 
-module.exports = (req, res) => {
-    res.write(layout(html, 'About'));
+module.exports = async (req, res) => {
+    res.write(await layout(html, 'About'));
     res.end();
 };
