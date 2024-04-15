@@ -7,6 +7,7 @@ const homeController = require('./controllers/homeController.js');
 const catalogController = require('./controllers/catalogController.js');
 const createControlller = require('./controllers/createControlller.js');
 const deleteController = require('./controllers/deleteController.js');
+const _static = require('./controllers/static.js');
 
 router.get('/', homeController);
 router.get('/catalog', catalogController);
@@ -15,6 +16,8 @@ router.get('/about', aboutController);
 router.post('/create', createControlller);
 
 router.get('/delete', deleteController);
+
+// router.get('/static/penguin.jpg', _static);
 
 const port = 3000;
 const server = http.createServer(requestHandler);

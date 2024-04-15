@@ -1,7 +1,12 @@
+const staticFile = require('./controllers/static.js');
 const handlers = {};
 
 // look for handler and return it
 function match(method, url) {
+    if (method == 'GET' && url.startsWith('/static/')) {
+        return staticFile;
+    }
+
     const methods = handlers[url] || {};
 
     const handler = methods[method];
